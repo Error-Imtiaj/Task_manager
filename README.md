@@ -19,3 +19,5 @@ flutter run
 # Screens
 ### Login Screen
 ![Login-screen](https://github.com/Error-Imtiaj/Images/blob/main/Task_manager_images/Login.png)
+### Register Screem
+![Register-Screen](https://github.com/Error-Imtiaj/Images/blob/main/Task_manager_images/Sign%20_Up_page.png)
