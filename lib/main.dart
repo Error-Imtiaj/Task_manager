@@ -12,7 +12,7 @@ void main() async {
   await windowManager.ensureInitialized();
 
   WindowOptions windowOptions = WindowOptions(
-    size: Size(1150, 690),
+    size: Size(1050, 690),
     center: true,
     backgroundColor: Colors.transparent,
     skipTaskbar: false,
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       ensureScreenSize: true,
-      designSize: const Size(2560, 1600),
+      designSize: const Size(3000, 1875),
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,

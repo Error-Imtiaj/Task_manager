@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:task_manager/Presentation/Const/const_utils.dart';
+import 'package:task_manager/Presentation/Screens/sign_up.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -15,12 +16,23 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   ConstUtils myconst = ConstUtils();
   bool _ischecked = false;
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    userNameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+          width: ScreenUtil().screenWidth,
+          height: ScreenUtil().screenHeight,
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: myconst.backgroundImage, fit: BoxFit.cover),
@@ -59,33 +71,31 @@ class _SignInState extends State<SignIn> {
   Widget _leftColumn() {
     return Expanded(
       flex: 1,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Gap(50.h),
-          Text(
-            'Sign In',
-            style: myconst.mytextstyle(
-                FontWeight.bold, 60, myconst.primaryTextColor),
-          ),
-          Gap(20.h),
-          myconst.myTextField(
-            'Enter Username',
-            myconst.userNameIcon,
-          ),
-          Gap(30.h),
-          myconst.myTextField(
-            'Enter Password',
-            myconst.passIcon,
-          ),
-          Gap(30.h),
-          _checkbox(),
-          Gap(30.h),
-          myconst.myButton('Login', () {}, myconst.buttonBackgroundColor),
-          Gap(100.h),
-          _loginWith(),
-          _dontHaveAccount(),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Gap(50.h),
+            Text(
+              'Sign In',
+              style: myconst.mytextstyle(
+                  FontWeight.bold, 70, myconst.primaryTextColor),
+            ),
+            Gap(20.h),
+            myconst.myTextFormField('Enter Username', myconst.userNameIcon,
+                userNameController, null),
+            Gap(30.h),
+            myconst.myTextFormField(
+                'Enter Password', myconst.passIcon, passwordController, true),
+            Gap(30.h),
+            _checkbox(),
+            Gap(30.h),
+            myconst.myButton('Login', () {}, myconst.buttonBackgroundColor),
+            Gap(100.h),
+            _loginWith(),
+            _dontHaveAccount(),
+          ],
+        ),
       ),
     );
   }
@@ -95,7 +105,7 @@ class _SignInState extends State<SignIn> {
     return Expanded(
       flex: 1,
       child: Container(
-        margin: EdgeInsets.only(top: 90).h,
+        margin: EdgeInsets.only(top: 90).w,
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: myconst.loginPageImage, fit: BoxFit.contain)),
@@ -119,7 +129,7 @@ class _SignInState extends State<SignIn> {
             }),
         Text(
           'Remember me',
-          style: myconst.mytextstyle(FontWeight.w600, 28, Colors.black),
+          style: myconst.mytextstyle(FontWeight.w600, 30, Colors.black),
         ),
       ],
     );
@@ -131,7 +141,7 @@ class _SignInState extends State<SignIn> {
       children: [
         Text(
           'Or, Login with ',
-          style: myconst.mytextstyle(FontWeight.w600, 28, Colors.black),
+          style: myconst.mytextstyle(FontWeight.w600, 30, Colors.black),
         ),
         myconst.myIconButtonForLoginSignUp(myconst.facebookIcon, () {}, null),
         myconst.myIconButtonForLoginSignUp(myconst.googleIcon, () {}, null),
@@ -145,9 +155,11 @@ class _SignInState extends State<SignIn> {
       children: [
         Text(
           'Don\'t have an account?',
-          style: myconst.mytextstyle(FontWeight.w600, 28, Colors.black),
+          style: myconst.mytextstyle(FontWeight.w600, 30, Colors.black),
         ),
-        myconst.myTextButton('Create One', () {})
+        myconst.myTextButton('Create One', () {
+          myconst.navigateTo(context, SignUp());
+        })
       ],
     );
   }

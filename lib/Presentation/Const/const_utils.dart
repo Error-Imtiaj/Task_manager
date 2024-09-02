@@ -1,8 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:task_manager/Presentation/Screens/sign_up.dart';
 
 class ConstUtils {
   // * PATH OF IMAGES
@@ -59,22 +62,26 @@ class ConstUtils {
 
   // * COMMON WIDGET
   // * TEXTFIELD
-  TextField myTextField(String hintText, Image iconimage) {
-    return TextField(
+  TextFormField myTextFormField(String hintText, Image iconimage,
+      TextEditingController controller, bool? obsecuretext) {
+    return TextFormField(
+      obscureText: obsecuretext ?? false,
+      controller: controller,
+      style: mytextstyle(FontWeight.w700, 34, Colors.black),
       decoration: InputDecoration(
         isDense: true,
         prefixIcon: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 10.0).w,
           child: Container(
             width: 20.w,
-            height: 20.w,
+            height: 20.h,
             child: iconimage,
           ),
         ),
         hintText: hintText,
         hintStyle: mytextstyle(FontWeight.w500, 34, textFieldBorderColor),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(6).r,
           borderSide: BorderSide(
             color: textFieldBorderColor,
             width: 1,
@@ -82,7 +89,7 @@ class ConstUtils {
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(6).r,
           borderSide: BorderSide(
             color: textFieldBorderColor,
             width: 2,
@@ -99,7 +106,8 @@ class ConstUtils {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           backgroundColor: color,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(4).r),
           elevation: 0,
           minimumSize: Size(250.w, 130.h)),
       onPressed: onpressed,
@@ -114,12 +122,14 @@ class ConstUtils {
   IconButton myIconButtonForLoginSignUp(
       Image icon, void Function()? onpressed, Color? color) {
     return IconButton(
-      style: IconButton.styleFrom(splashFactory: NoSplash.splashFactory),
+      style: IconButton.styleFrom(
+        splashFactory: NoSplash.splashFactory,
+      ),
       color: color,
       onPressed: onpressed,
       icon: SizedBox(
-        width: 70.w,
-        height: 70.h,
+        width: 50.w,
+        height: 50.h,
         child: icon,
       ),
       constraints: BoxConstraints(),
@@ -130,7 +140,10 @@ class ConstUtils {
   // * TEXT BUTTON
   TextButton myTextButton(String text, void Function()? onpressed) {
     return TextButton(
-      style: TextButton.styleFrom(splashFactory: NoSplash.splashFactory),
+      style: TextButton.styleFrom(
+        splashFactory: NoSplash.splashFactory,
+        overlayColor: Colors.transparent,
+      ),
       onPressed: onpressed,
       child: Text(
         text,
@@ -138,4 +151,11 @@ class ConstUtils {
       ),
     );
   }
+
+  // * NAVIGATE TO
+  void navigateTo(BuildContext context, Widget page) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => page));
+  }
+
+// * CHECKBOX
 }
