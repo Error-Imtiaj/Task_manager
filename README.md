@@ -1,16 +1,21 @@
-# task_manager
+# Task_manager
 
-A new Flutter project.
-
+> A Flutter project only for Windows, MacOS and Linux.
+---
+## Installation
+First, you need to clone the repository to your local machine. Open your terminal or command prompt and run the following command:
+```bash
+git clone https://github.com/Error-Imtiaj/Task_manager.git
+```
 ## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+You might need to run `flutter pub get ` in your project terminal in order to run and build the project.
+```
+flutter pub get
+```
+If you want to run the project by Terminal. You have to open the project folder in your VS Code or any IDE you use the open terminal and run the following command
+```
+flutter run
+```
+# Screens
+### Login Screen
+![Login-screen](https://github.com/Error-Imtiaj/Images/blob/main/Task_manager_images/Login.png)
